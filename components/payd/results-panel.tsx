@@ -62,7 +62,7 @@ export function ResultsPanel({ batch }: ResultsPanelProps) {
     .reduce((sum, r) => sum + parseFloat(r.amount || "0"), 0);
 
   return (
-    <section className="rounded-xl border border-border bg-card p-6">
+    <section className="rounded-xl border border-border bg-card/80 backdrop-blur-md p-6">
       <h2 className="mb-6 text-xl font-semibold text-foreground">
         Batch Results — {batch.name}
       </h2>

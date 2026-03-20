@@ -34,7 +34,7 @@ export function Navbar({ walletAddress, onConnect, onDisconnect }: NavbarProps) 
             onMouseEnter={() => setShowDisconnect(true)}
             onMouseLeave={() => setShowDisconnect(false)}
           >
-            <button className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm transition-colors hover:bg-border">
+            <button className="flex items-center gap-2 rounded-full border border-border bg-card/80 backdrop-blur-sm px-4 py-2 text-sm transition-colors hover:bg-card">
               <span className="font-mono text-foreground">
                 {truncateAddress(walletAddress)}
               </span>
@@ -44,7 +44,7 @@ export function Navbar({ walletAddress, onConnect, onDisconnect }: NavbarProps) 
             {showDisconnect && (
               <button
                 onClick={onDisconnect}
-                className="absolute top-full right-0 mt-2 w-full rounded-lg border border-border bg-card px-4 py-2 text-sm text-error transition-colors hover:bg-border"
+                className="absolute top-full right-0 mt-2 w-full rounded-lg border border-border bg-card/90 backdrop-blur-sm px-4 py-2 text-sm text-error transition-colors hover:bg-card"
               >
                 Disconnect
               </button>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import dynamic from "next/dynamic";
 import { Navbar } from "@/components/payd/navbar";
 import { Hero } from "@/components/payd/hero";
 import { BatchBuilder } from "@/components/payd/batch-builder";
@@ -8,6 +9,10 @@ import { ResultsPanel } from "@/components/payd/results-panel";
 import { History } from "@/components/payd/history";
 import { Footer } from "@/components/payd/footer";
 import { Toast, ToastContainer } from "@/components/payd/toast";
+
+const GL = dynamic(() => import("@/components/gl").then((mod) => mod.GL), {
+  ssr: false,
+});
 
 export interface Recipient {
   id: string;
@@ -130,29 +135,37 @@ export default function Home() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar
-        walletAddress={walletAddress}
-        onConnect={connectWallet}
-        onDisconnect={disconnectWallet}
-      />
+    <div className="min-h-screen flex flex-col relative">
+      {/* Particle Background */}
+      <div className="fixed inset-0 z-0">
+        <GL hovering={false} />
+      </div>
 
-      <main className="flex-1 pt-24 pb-16">
-        <div className="container flex flex-col gap-16">
-          <Hero />
+      {/* Content */}
+      <div className="relative z-10 min-h-screen flex flex-col">
+        <Navbar
+          walletAddress={walletAddress}
+          onConnect={connectWallet}
+          onDisconnect={disconnectWallet}
+        />
 
-          <BatchBuilder
-            walletConnected={!!walletAddress}
-            onSendBatch={sendBatch}
-          />
+        <main className="flex-1 pt-24 pb-16">
+          <div className="container flex flex-col gap-16">
+            <Hero />
 
-          {currentBatch && <ResultsPanel batch={currentBatch} />}
+            <BatchBuilder
+              walletConnected={!!walletAddress}
+              onSendBatch={sendBatch}
+            />
 
-          <History batches={batchHistory} onViewDetails={setCurrentBatch} />
-        </div>
-      </main>
+            {currentBatch && <ResultsPanel batch={currentBatch} />}
 
-      <Footer />
+            <History batches={batchHistory} onViewDetails={setCurrentBatch} />
+          </div>
+        </main>
+
+        <Footer />
+      </div>
 
       <ToastContainer>
         {toasts.map((toast) => (

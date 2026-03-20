@@ -43,7 +43,7 @@ export function History({ batches, onViewDetails }: HistoryProps) {
       </h2>
 
       {batches.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-border p-12 text-center">
+        <div className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-border bg-card/50 backdrop-blur-md p-12 text-center">
           <FileText className="mb-4 h-12 w-12 text-muted-foreground" />
           <p className="text-muted">
             No batches yet. Send your first batch above.
@@ -54,7 +54,7 @@ export function History({ batches, onViewDetails }: HistoryProps) {
           {batches.map((batch) => (
             <div
               key={batch.id}
-              className="rounded-xl border border-border bg-card p-5 transition-colors hover:bg-card/80"
+              className="rounded-xl border border-border bg-card/80 backdrop-blur-md p-5 transition-colors hover:bg-card/90"
             >
               <div className="mb-3 flex items-start justify-between">
                 <h3 className="font-medium text-foreground line-clamp-1">

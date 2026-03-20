@@ -71,7 +71,7 @@ export function BatchBuilder({ walletConnected, onSendBatch }: BatchBuilderProps
   const canSend = walletConnected && validRecipientsCount > 0 && !isSending;
 
   return (
-    <section className="rounded-xl border border-border bg-card p-6">
+    <section className="rounded-xl border border-border bg-card/80 backdrop-blur-md p-6">
       <h2 className="mb-6 text-xl font-semibold text-foreground">
         Batch Builder
       </h2>
